@@ -1,20 +1,26 @@
 #!/usr/bin/env python3
-""" Execute multiple coroutines un the same time """
+""" Execute multiple coroutines at the same time """
 
+import asyncio
 
 wait_random = __import__('0-basic_async_syntax').wait_random
-import asyncio
-import random
 
 
-async def wait_random(max_delay: int = 10) -> float:
-    delay = random.uniform(0, max_delay)
-    await asyncio.sleep(delay)
-    return delay
+async def wait_n(n: int, max_delay: int) -> list:
+    results: list = []
+    tasks = []
+    for i in range(n):
+        task = asyncio.create_task(wait_random(max_delay))
+        tasks.append(task)
+    for completed_task in asyncio.as_completed(tasks):
+        delay = await completed_task
+        inserted = False
+        for index in range(len(results)):
+            if delay < results[index]:
+                results.insert(index, delay)
+                inserted = True
+                break
+        if not inserted:
+            results.append(delay)
 
-
-async def wait_n(n, max_delay):
-    n = 5,
-    max_delay = 5,
-    return va
-
+    return results
