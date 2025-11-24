@@ -7,6 +7,7 @@ wait_random = __import__('0-basic_async_syntax').wait_random
 
 
 async def wait_n(n: int, max_delay: int) -> list:
+    """Execute wait_random n times concurrently and return sorted delays."""
     results: list = []
     tasks = []
     for i in range(n):
@@ -24,3 +25,4 @@ async def wait_n(n: int, max_delay: int) -> list:
             results.append(delay)
 
     return results
+
