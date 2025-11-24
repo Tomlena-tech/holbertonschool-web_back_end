@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Module that defines an asynchronous coroutine to wait for n random delays."""
+"""Defines an asynchronous coroutine to wait for n random delays."""
 import asyncio
 from typing import List
 
