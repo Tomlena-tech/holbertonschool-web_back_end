@@ -5,6 +5,8 @@
     """
 
 from typing import List
+import asyncio
+
 
 async_generator = __import__('async_generator').async_generator
 
