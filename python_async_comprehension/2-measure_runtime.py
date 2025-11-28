@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Asynchronous generator that yields random numbers
+Measure the runtime of four parallel async_comprehension calls
 """
 import time
 import asyncio
