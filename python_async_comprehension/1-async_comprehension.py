@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-""" Generate a comprehension list asynchrone with 10 times
-    Returns:
-        _type_: return 10 lists
-    """
+"""Async comprehension"""
 
 from typing import List
-import asyncio
 
 async_generator = __import__('0-async_generator').async_generator
 
 
 async def async_comprehension() -> List[float]:
+    """
+    Coroutine that collects 10 random numbers using async comprehension
+    over async_generator.
+
+    Returns:
+        List[float]: List of 10 random float numbers
+    """
     return [i async for i in async_generator()]
