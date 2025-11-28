@@ -5,4 +5,9 @@ Asynchronous generator that yields random numbers
 import time
 import asyncio
 
-from async_generator = __import__('0-async_generator').async_generator
+async_comprehension = __import__('async_comprehension').async_comprehension
+
+async def async_comprehension()
+async def async_comprehension()
+async def async_comprehension()
+async def async_comprehension()
