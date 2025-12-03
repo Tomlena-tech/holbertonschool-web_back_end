@@ -52,7 +52,7 @@ class Server:
         data: List[List] = []
         current_index = index
 
-        while len(data) < page_size:
+        while len(data) < page_size and current_index < len(indexed_data):
             if current_index in indexed_data:
                 data.append(indexed_data[current_index])
             current_index += 1
