@@ -1,1 +1,2 @@
-show dbs
+// Script Nosql pour afficher la databass
+show databases
