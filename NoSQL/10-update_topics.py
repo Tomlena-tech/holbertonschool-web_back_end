@@ -5,6 +5,13 @@ from pymongo import MongoClient
 
 
 def update_topics(mongo_collection, name, topics):
+    """update topics field of a school document
+    Args:
+        mongo_collection: pymongo collection object
+        name: name of the school to update
+        topics: list of topics approached in the school
+    Returns: None
+    """
     if mongo_collection is None:
         return
     if not isinstance(name, str) or not isinstance(topics, list):
