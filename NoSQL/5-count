@@ -1,0 +1,2 @@
+//Display the number of docs into 'school'
+db.school.countDocuments({})
