@@ -1,16 +1,13 @@
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
 function displayMessage() {
-    console.log("Welcome to Holberton School, what is your name?");
+  console.log('Welcome to Holberton School, what is your name?');
 }
-process.stdin.on('data', function(data) {
-    console.log("Your name is: " + data.toString().trim());
+process.stdin.on('data', (data) => {
+  console.log(`Your name is: ${data.toString().trim()}`);
 
-
-process.stdin.on('end', function() {
-    console.log("This important software is now closing");
-});
+  process.stdin.on('end', () => {
+    console.log('This important software is now closing');
+  });
 });
 displayMessage();
-
-
