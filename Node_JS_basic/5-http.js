@@ -38,7 +38,7 @@ const app = http.createServer (async (req, res) => {
     } else if (req.url === '/students') {
         res.writeHead (200, { 'Content-Type': 'text/plain' });
         try {
-            const result = await countStudents (process.argv(2));
+            const result = await countStudents (process.argv[2]);
             res.end (`This is the list of our students\n${result}`);
         } catch (error) {
             res.end (error.message);
