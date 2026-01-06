@@ -7,12 +7,12 @@ function countStudents (path) {
                 reject (new Error ('Cannot load the database'));
             } else {
                 const lines = data.split ('\n');
-                const students = lines.slice (1);
+                const students = lines.slice (1).filter(line => line.trim() !== '');
                 const numberOfStudents = students.length;
                 const fields = {};
                 for (const student of students) {
                     if (student) {
-                        const [firstName, , field] = student.split (',');
+                        const [firstName, , ,field] = student.split (',');
 
                         if (fields[field]) {
                             fields[field].push (firstName);
@@ -38,7 +38,7 @@ const app = http.createServer (async (req, res) => {
     } else if (req.url === '/students') {
         res.writeHead (200, { 'Content-Type': 'text/plain' });
         try {
-            const result = await countStudents ('./database.csv');
+            const result = await countStudents (process.argv(2));
             res.end (`This is the list of our students\n${result}`);
         } catch (error) {
             res.end (error.message);
