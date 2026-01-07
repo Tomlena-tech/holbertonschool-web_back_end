@@ -16,7 +16,6 @@ function countStudents(path) {
 
         const students = lines.slice(1);
         const fields = {};
-        let totalStudents = 0;
 
         students.forEach((student) => {
           const [firstname, , , field] = student.split(',');
@@ -25,11 +24,10 @@ function countStudents(path) {
               fields[field] = [];
             }
             fields[field].push(firstname);
-            totalStudents += 1;
           }
         });
 
-        let result = `Number of students: ${totalStudents}\n`;
+        let result = `Number of students: ${students.length}\n`;
 
         // Trier les fields alphabétiquement
         const sortedFields = Object.keys(fields).sort((a, b) => a.localeCompare(b));
@@ -68,5 +66,3 @@ const app = http.createServer(async (req, res) => {
 });
 
 app.listen(1245);
-
-module.exports = app;
