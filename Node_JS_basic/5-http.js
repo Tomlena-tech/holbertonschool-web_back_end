@@ -16,6 +16,7 @@ function countStudents(path) {
 
         const students = lines.slice(1);
         const fields = {};
+        let totalStudents = 0;
 
         students.forEach((student) => {
           const [firstname, , , field] = student.split(',');
@@ -24,10 +25,11 @@ function countStudents(path) {
               fields[field] = [];
             }
             fields[field].push(firstname);
+            totalStudents += 1;
           }
         });
 
-        let result = `Number of students: ${students.length}\n`;
+        let result = `Number of students: ${totalStudents}\n`;
 
         // Trier les fields alphabétiquement
         const sortedFields = Object.keys(fields).sort((a, b) => a.localeCompare(b));
@@ -36,24 +38,32 @@ function countStudents(path) {
           result += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`;
         });
 
-        resolve(result.trim());
+        resolve(result);
       }
     });
   });
 }
 
 const app = http.createServer(async (req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
+
   if (req.url === '/') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.statusCode = 200;
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    const databasePath = process.argv[2];
+
     try {
-      const result = await countStudents(process.argv[2]);
+      const result = await countStudents(databasePath);
+      res.statusCode = 200;
       res.end(`This is the list of our students\n${result}`);
     } catch (error) {
+      res.statusCode = 500;
       res.end(`This is the list of our students\n${error.message}`);
     }
+  } else {
+    res.statusCode = 404;
+    res.end();
   }
 });
 
